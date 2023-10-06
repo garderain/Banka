@@ -5,7 +5,7 @@ namespace Banka
 	{
         static void Main(string[] args)
         {
-			TekuciRacunFactory tekuciRacunFactory = new TekuciRacunFactory();
+			ITekuciRacunFactory tekuciRacunFactory = FactoryPool.DobaviInstancu().TekuciRacunFactory;
 
 			Console.WriteLine("Unesite ime osobe: ");
 			string? ime = Console.ReadLine();

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Banka
 {
-	public class TekuciRacunFactory
+	public class TekuciRacunFactory: ITekuciRacunFactory
 	{
 		private static readonly string KOD_DRZAVA = "HR";
 		private static readonly string KOD_BANKA = "1001005";
