@@ -1,6 +1,6 @@
 ﻿namespace Banka
 {
-    public class FizickaOsoba
+    public class FizickaOsoba : IFizickaOsoba
     {
         public string Ime { get; private set; }
         public string Prezime { get; private set; }

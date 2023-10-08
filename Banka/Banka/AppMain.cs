@@ -1,34 +1,43 @@
-﻿using System;
-namespace Banka
+﻿namespace Banka
 {
-	public class AppMain
-	{
+    public class AppMain
+    {
         static void Main(string[] args)
         {
-			ITekuciRacunFactory tekuciRacunFactory = FactoryPool.DobaviInstancu().TekuciRacunFactory;
 
-			Console.WriteLine("Unesite ime osobe: ");
-			string? ime = Console.ReadLine();
-			Console.WriteLine("Unesite prezime osobe: ");
-			string? prezime = Console.ReadLine();
-			Console.WriteLine("Unesite OIB osobe: ");
-			string? oib = Console.ReadLine();
 
-			if(ime == null || prezime == null || oib == null)
-			{
-				Console.WriteLine("Neispravan unos! Dovidenja!");
-				return;
-			}
+            Console.WriteLine("Unesite ime osobe: ");
+            string? ime = Console.ReadLine();
+            Console.WriteLine("Unesite prezime osobe: ");
+            string? prezime = Console.ReadLine();
+            Console.WriteLine("Unesite OIB osobe: ");
+            string? oib = Console.ReadLine();
 
-			FizickaOsoba fizickaOsoba = new FizickaOsoba(ime, prezime, oib, tekuciRacunFactory.KreirajNoviRacun(oib));
+            if (ime == null || prezime == null || oib == null)
+            {
+                Console.WriteLine("Neispravan unos! Dovidenja!");
+                return;
+            }
 
-			fizickaOsoba.UplataNovca(VrstaRacuna.TEKUCI_RACUN, 200.0f);
-			fizickaOsoba.IsplataNovca(VrstaRacuna.TEKUCI_RACUN, 150.0f);
 
-			Console.WriteLine(fizickaOsoba.TekuciRacun.StanjeRacuna);
+            try
+            {
+                IFizickaOsoba fizickaOsoba = FactoryPool.DobaviInstancu().FizickaOsobaFactory.KreirajFizickuOsobu(ime, prezime, oib);
+                fizickaOsoba.UplataNovca(VrstaRacuna.TEKUCI_RACUN, 200.0f);
+                fizickaOsoba.IsplataNovca(VrstaRacuna.TEKUCI_RACUN, 150.0f);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.ReadLine();
 
-			Console.ReadLine();
-		}
-	}
+
+
+            //Console.WriteLine(fizickaOsoba.TekuciRacun.StanjeRacuna);
+
+            Console.ReadLine();
+        }
+    }
 }
 

@@ -1,0 +1,15 @@
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\bin\Debug\net7.0\Banka.exe
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\bin\Debug\net7.0\Banka.deps.json
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\bin\Debug\net7.0\Banka.runtimeconfig.json
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\bin\Debug\net7.0\Banka.dll
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\bin\Debug\net7.0\Banka.pdb
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\Banka.csproj.AssemblyReference.cache
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\Banka.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\Banka.AssemblyInfoInputs.cache
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\Banka.AssemblyInfo.cs
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\Banka.csproj.CoreCompileInputs.cache
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\Banka.dll
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\refint\Banka.dll
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\Banka.pdb
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\Banka.genruntimeconfig.cache
+C:\Users\Magdalena\OneDrive\Dokumenti\GitHub\Banka\Banka\Banka\obj\Debug\net7.0\ref\Banka.dll
