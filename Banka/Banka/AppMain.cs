@@ -26,14 +26,16 @@
                 fizickaOsoba.UplataNovca(VrstaRacuna.TEKUCI_RACUN, 200.0f);
                 fizickaOsoba.IsplataNovca(VrstaRacuna.TEKUCI_RACUN, 150.0f);
             }
-            catch (Exception ex)
+            //S popisom catch u kojima se nalaze specificni exceptioni definiramo koje exceptione zelimo uhvatiti i znamo razrijesiti
+            catch (MalformedOibException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            Console.ReadLine();
-
-
-
+            catch(DuplicateOibException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
             //Console.WriteLine(fizickaOsoba.TekuciRacun.StanjeRacuna);
 
             Console.ReadLine();

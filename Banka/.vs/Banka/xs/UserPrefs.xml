@@ -1,20 +1,21 @@
 ﻿<Properties StartupConfiguration="{BC00606E-C648-46E3-B426-FDA1D199D670}|Default">
-  <MonoDevelop.Ide.ItemProperties.Banka FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Banka" expanded="True">
-            <Node name="Banka" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Banka PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Banka/AppMain.cs">
+    <Files>
+      <File FileName="Banka/AppMain.cs" Line="34" Column="44" />
+      <File FileName="Banka/Fizicka Osoba/FizickaOsobaExceptions.cs" Line="2" Column="16" />
+      <File FileName="Banka/Fizicka Osoba/FizickaOsobaFactory.cs" Line="19" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Fizicka Osoba\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fizicka Osoba\" />
+  </ItemGroup>
 </Project>

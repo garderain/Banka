@@ -11,16 +11,18 @@
         {
             if (!ProvjeriOIB(oib))
             {
-                throw new Exception("Neispravan OIB!");
+                throw new MalformedOibException("Neispravan OIB!");
             }
             if (ListaOIBa.Contains(oib))
             {
-                throw new Exception("OIB vec postoji");
+                throw new DuplicateOibException("OIB vec postoji");
             }
+
             FizickaOsoba fizickaOsoba = new(ime, prezime, oib, FactoryPool.DobaviInstancu().TekuciRacunFactory.KreirajNoviRacun(oib));
             return fizickaOsoba;
         }
 
+        //Provjerava sastoji li se dobiveni string oib samo od znamenaka i je li duljina tocno 11 znakova
         private bool ProvjeriOIB(string oib)
         {
             foreach (char slovo in oib)
