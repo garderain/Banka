@@ -12,19 +12,41 @@
             string? prezime = Console.ReadLine();
             Console.WriteLine("Unesite OIB osobe: ");
             string? oib = Console.ReadLine();
-            Console.WriteLine("Zelite li kreirati:\n 1.Tekuci Racun \n2.Ziro Racun");
+            HashSet<VrstaRacuna> racuniZaIzradu = new();
+            while (true)
+            {
+                Console.WriteLine("Zelite li kreirati:\n 1.Tekuci Racun \n2.Ziro Racun\n3.Izlaz");
+                int izbor = Convert.ToInt32(Console.ReadLine());
+                if (izbor == 1) { racuniZaIzradu.Add(VrstaRacuna.TEKUCI_RACUN); }
+                else if (izbor == 2) { racuniZaIzradu.Add(VrstaRacuna.ZIRO_RACUN); }
+                else if (izbor == 3) { break; }
+                else { Console.WriteLine("Neispravan unos!"); }
+            }
+
+
+
 
             if (ime == null || prezime == null || oib == null)
             {
                 Console.WriteLine("Neispravan unos! Dovidenja!");
                 return;
             }
-            // if(vrstaRacuna != 1 && vrstaRacuna != 2) { throw new InvalidAccountOption(vrstaRacuna+ "je neispravan unos!"); }
-            //Kako izbor racuna preko enuma spremiti u varijjablu da ju mozemo koristiti i kreacji nove osobe
+            try
+            {
+                IFizickaOsoba fizickaOsoba = FactoryPool.DobaviInstancu().FizickaOsobaFactory.KreirajFizickuOsobu(ime, prezime, oib, racuniZaIzradu);
+            }
+            catch (InvalidAccountOption ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (HasZiroAccount ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             try
             {
-                IFizickaOsoba fizickaOsoba = FactoryPool.DobaviInstancu().FizickaOsobaFactory.KreirajFizickuOsobu(ime, prezime, oib, );
+                IFizickaOsoba fizickaOsoba = FactoryPool.DobaviInstancu().FizickaOsobaFactory.KreirajFizickuOsobu(ime, prezime, oib, racuniZaIzradu);
                 fizickaOsoba.UplataNovca(VrstaRacuna.TEKUCI_RACUN, 200.0f);
                 fizickaOsoba.IsplataNovca(VrstaRacuna.TEKUCI_RACUN, 150.0f);
             }
@@ -37,21 +59,11 @@
             {
                 Console.WriteLine(ex.Message);
             }
-            try
-            {   // Zasto mora (IFizickaOsoba)
-                IFizickaOsoba fizickaOsoba = (IFizickaOsoba)FactoryPool.DobaviInstancu().ZiroRacunFactory.KreirajZiroRacun(ime, prezime, oib);
-            }
-            catch (InvalidAccountOption ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (HasZiroAccount ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+
             //Console.WriteLine(fizickaOsoba.TekuciRacun.StanjeRacuna);
 
             Console.ReadLine();
+
         }
     }
 }

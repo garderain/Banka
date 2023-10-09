@@ -1,31 +1,21 @@
-﻿using Banka.Ziro_Racun;
-
-namespace Banka
+﻿namespace Banka
 {
     public class FizickaOsoba : IFizickaOsoba
     {
         public string Ime { get; private set; }
         public string Prezime { get; private set; }
         public string OIB { get; private set; }
-        public ITekuciRacun TekuciRacun { get; private set; }
-        public IZiroRacun ZiroRacun { get; private set; }
+        public ITekuciRacun? TekuciRacun { get; private set; }
+        public IZiroRacun? ZiroRacun { get; private set; }
 
-        public FizickaOsoba(string ime, string prezime, string oib, ITekuciRacun tekuciRacun)
+        public FizickaOsoba(string ime, string prezime, string oib, ITekuciRacun? tekuciRacun, IZiroRacun? ziroRacun)
         {
             Ime = ime;
             Prezime = prezime;
             OIB = oib;
             TekuciRacun = tekuciRacun;
-        }
-
-        public FizickaOsoba(string ime, string prezime, string oib, IZiroRacun ziroRacun)
-        {
-            Ime = ime;
-            Prezime = prezime;
-            OIB = oib;
             ZiroRacun = ziroRacun;
         }
-
 
         public bool IsplataNovca(VrstaRacuna vrstaRacuna, float iznos)
         {

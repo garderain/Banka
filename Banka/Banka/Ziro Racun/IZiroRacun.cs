@@ -1,12 +1,10 @@
-﻿namespace Banka.Ziro_Racun
+﻿namespace Banka
 {
     public interface IZiroRacun
     {
 
         float StanjeRacuna { get; }
-        string IBAN { get; }
-        string Ime { get; }
-        string Prezime { get; }
+        string? IBAN { get; }
         float RaspoloziviIznos { get; }
 
         bool UplatiNovac(float IznosZaUplatu);

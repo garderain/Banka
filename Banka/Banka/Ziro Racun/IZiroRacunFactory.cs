@@ -1,7 +1,7 @@
-﻿namespace Banka.Ziro_Racun
+﻿namespace Banka
 {
     public interface IZiroRacunFactory
     {
-        IZiroRacun KreirajZiroRacun(string ime, string prezime, string OIB);
+        IZiroRacun KreirajZiroRacun(string OIB);
     }
 }

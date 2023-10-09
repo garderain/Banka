@@ -2,6 +2,6 @@
 {
     public interface IFizickaOsobaFactory
     {
-        IFizickaOsoba KreirajFizickuOsobu(string ime, string prezime, string oib, VrstaRacuna izbor);
+        IFizickaOsoba KreirajFizickuOsobu(string ime, string prezime, string oib, HashSet<VrstaRacuna> racuni);
     }
 }

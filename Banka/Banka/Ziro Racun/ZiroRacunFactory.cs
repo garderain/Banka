@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Banka.Ziro_Racun
+namespace Banka
 {
     public class ZiroRacunFactory : IZiroRacunFactory
     {
@@ -9,7 +9,7 @@ namespace Banka.Ziro_Racun
 
         private List<string> iskoristeniIBANi = new();// Postoji li mogucnost da ne pravimo novu listu!
         private Dictionary<string, string> OibIban = new();
-        public IZiroRacun KreirajZiroRacun(string ime, string prezime, string OIB)
+        public IZiroRacun KreirajZiroRacun(string OIB)
         {
             string IBAN = GenerirajNoviIBAN();
             while (iskoristeniIBANi.Contains(IBAN))
@@ -22,7 +22,7 @@ namespace Banka.Ziro_Racun
                 iskoristeniIBANi.Add(IBAN);
                 OibIban.Add(OIB, IBAN);
             }
-            ZiroRacun ziroRacun = new(ime, prezime, 0.0f, 0.0f, OIB, IBAN);
+            ZiroRacun ziroRacun = new(0.0f, 0.0f, IBAN);
             return ziroRacun;
 
         }

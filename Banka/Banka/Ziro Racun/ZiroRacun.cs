@@ -1,25 +1,19 @@
-﻿namespace Banka.Ziro_Racun
+﻿namespace Banka
 {
     public class ZiroRacun : IZiroRacun
     {
         private static float LIMITUPLATE = 10000;
         private static float LIMITISPLATE = 5000;
-        public string? Ime { get; private set; }
-        public string? Prezime { get; private set; }
         public float StanjeRacuna { get; private set; }
         public float RaspoloziviIznos { get; private set; }
         public float RezerviraniDio { get; private set; }
         public string? IBAN { get; private set; }
 
-        private string? Oib { get; set; }
         private float LimitUplate { get; set; }
         private float LimitIsplate { get; set; }
 
-        public ZiroRacun(string ime, string prezime, float stanjeRacuna, float rezerviraniDio, string OIB, string Iban)
+        public ZiroRacun(float stanjeRacuna, float rezerviraniDio, string Iban)
         {
-            Ime = ime;
-            Prezime = prezime;
-            Oib = OIB;
             IBAN = Iban;
             StanjeRacuna = stanjeRacuna;
             RaspoloziviIznos = stanjeRacuna - rezerviraniDio;
@@ -27,21 +21,21 @@
             LimitIsplate = LIMITISPLATE;
         }
 
-        public bool UplatiNovac(float IznosZaUplatu)
+        public bool UplatiNovac(float iznosZaUplatu)
         {
-            if (IznosZaUplatu <= LimitUplate)
+            if (iznosZaUplatu <= LimitUplate)
             {
-                StanjeRacuna += IznosZaUplatu;
+                StanjeRacuna += iznosZaUplatu;
                 return true;
             }
             else { return false; }
 
         }
-        public bool IsplatiNovac(float IznosZaIsplatu)
+        public bool IsplatiNovac(float iznosZaIsplatu)
         {
-            if (IznosZaIsplatu <= RaspoloziviIznos && IznosZaIsplatu <= LimitIsplate)
+            if (iznosZaIsplatu <= RaspoloziviIznos && iznosZaIsplatu <= LimitIsplate)
             {
-                StanjeRacuna -= IznosZaIsplatu;
+                StanjeRacuna -= iznosZaIsplatu;
                 return true;
             }
             else { return false; }

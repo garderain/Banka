@@ -7,7 +7,7 @@
         {
 
         }
-        public IFizickaOsoba KreirajFizickuOsobu(string ime, string prezime, string oib, VrstaRacuna izbor)
+        public IFizickaOsoba KreirajFizickuOsobu(string ime, string prezime, string oib, HashSet<VrstaRacuna> racuniZaIzradu)
         {
             if (!ProvjeriOIB(oib))
             {
@@ -17,14 +17,16 @@
             {
                 throw new DuplicateOibException("OIB vec postoji");
             }
-            FizickaOsoba fizickaOsoba;
 
-            if (izbor != VrstaRacuna.ZIRO_RACUN || izbor != VrstaRacuna.TEKUCI_RACUN) { throw new InvalidAccountOption("Nije izabrana vrsta racuna!"); }
-            if (izbor == VrstaRacuna.TEKUCI_RACUN)
+            if (racuniZaIzradu.Count == 0) { throw new InvalidAccountOption("Korisnik mora imati barem jedan racun!"); }
+            ITekuciRacun? tekuciRacun = null;
+            IZiroRacun? ziroRacun = null;
+            foreach (VrstaRacuna racun in racuniZaIzradu)
             {
-                fizickaOsoba = new(ime, prezime, oib, FactoryPool.DobaviInstancu().TekuciRacunFactory.KreirajNoviRacun(oib));
+                if (racun == VrstaRacuna.TEKUCI_RACUN) { tekuciRacun = FactoryPool.DobaviInstancu().TekuciRacunFactory.KreirajNoviRacun(oib); }
+                else { ziroRacun = FactoryPool.DobaviInstancu().ZiroRacunFactory.KreirajZiroRacun(oib); }
             }
-            else { fizickaOsoba = new(ime, prezime, oib, FactoryPool.DobaviInstancu().ZiroRacunFactory.KreirajZiroRacun(ime, prezime, oib)); }
+            FizickaOsoba fizickaOsoba = new(ime, prezime, oib, tekuciRacun, ziroRacun);
             return fizickaOsoba;
         }
 
