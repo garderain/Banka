@@ -7,7 +7,7 @@
         {
 
         }
-        public IFizickaOsoba KreirajFizickuOsobu(string ime, string prezime, string oib)
+        public IFizickaOsoba KreirajFizickuOsobu(string ime, string prezime, string oib, VrstaRacuna izbor)
         {
             if (!ProvjeriOIB(oib))
             {
@@ -17,8 +17,14 @@
             {
                 throw new DuplicateOibException("OIB vec postoji");
             }
+            FizickaOsoba fizickaOsoba;
 
-            FizickaOsoba fizickaOsoba = new(ime, prezime, oib, FactoryPool.DobaviInstancu().TekuciRacunFactory.KreirajNoviRacun(oib));
+            if (izbor != VrstaRacuna.ZIRO_RACUN || izbor != VrstaRacuna.TEKUCI_RACUN) { throw new InvalidAccountOption("Nije izabrana vrsta racuna!"); }
+            if (izbor == VrstaRacuna.TEKUCI_RACUN)
+            {
+                fizickaOsoba = new(ime, prezime, oib, FactoryPool.DobaviInstancu().TekuciRacunFactory.KreirajNoviRacun(oib));
+            }
+            else { fizickaOsoba = new(ime, prezime, oib, FactoryPool.DobaviInstancu().ZiroRacunFactory.KreirajZiroRacun(ime, prezime, oib)); }
             return fizickaOsoba;
         }
 

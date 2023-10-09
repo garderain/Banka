@@ -1,9 +1,9 @@
-﻿using System;
-namespace Banka
+﻿namespace Banka
 {
-	public enum VrstaRacuna
-	{
-		TEKUCI_RACUN
-	}
+    public enum VrstaRacuna
+    {
+        TEKUCI_RACUN, ZIRO_RACUN
+
+    }
 }
 
