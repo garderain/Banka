@@ -1,6 +1,4 @@
-﻿using Banka.Ziro_Racun;
-
-namespace Banka
+﻿namespace Banka
 {
     //Primjer Singleton klase
     public class FactoryPool
@@ -10,6 +8,8 @@ namespace Banka
         public IFizickaOsobaFactory FizickaOsobaFactory { get; }
         public IZiroRacunFactory ZiroRacunFactory { get; }
 
+        public INenamjenskiKreditFactory NenamjenskiKreditFactory { get; }
+
         private static FactoryPool? factoryPool; //Instanca klase FactoryPool
 
         private FactoryPool()
@@ -17,6 +17,7 @@ namespace Banka
             ZiroRacunFactory = new ZiroRacunFactory();
             TekuciRacunFactory = new TekuciRacunFactory(); //Ovdje odlucujemo koju implementaciju tvornice za TekuciRacun koristimo
             FizickaOsobaFactory = new FizickaOsobaFactory();
+            NenamjenskiKreditFactory = new NenamjenskiKreditFactory();
         }
 
         public static FactoryPool DobaviInstancu()

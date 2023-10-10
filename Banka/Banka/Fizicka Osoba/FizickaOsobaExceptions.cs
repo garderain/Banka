@@ -28,5 +28,10 @@
     {
         public HasZiroAccount(string message) : base(message) { }
     }
+    // Ako nema dovoljno primanja za trazeni kredit
+    public class InsufficientIncome : Exception
+    {
+        public InsufficientIncome(string message) : base(message) { }
+    }
 }
 

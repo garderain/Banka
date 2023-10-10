@@ -23,27 +23,11 @@
                 else { Console.WriteLine("Neispravan unos!"); }
             }
 
-
-
-
             if (ime == null || prezime == null || oib == null)
             {
                 Console.WriteLine("Neispravan unos! Dovidenja!");
                 return;
             }
-            try
-            {
-                IFizickaOsoba fizickaOsoba = FactoryPool.DobaviInstancu().FizickaOsobaFactory.KreirajFizickuOsobu(ime, prezime, oib, racuniZaIzradu);
-            }
-            catch (InvalidAccountOption ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (HasZiroAccount ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             try
             {
                 IFizickaOsoba fizickaOsoba = FactoryPool.DobaviInstancu().FizickaOsobaFactory.KreirajFizickuOsobu(ime, prezime, oib, racuniZaIzradu);
@@ -56,6 +40,14 @@
                 Console.WriteLine(ex.Message);
             }
             catch (DuplicateOibException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (InvalidAccountOption ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (HasZiroAccount ex)
             {
                 Console.WriteLine(ex.Message);
             }

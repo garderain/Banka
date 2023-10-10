@@ -8,6 +8,9 @@
         public ITekuciRacun? TekuciRacun { get; private set; }
         public IZiroRacun? ZiroRacun { get; private set; }
 
+
+
+
         public FizickaOsoba(string ime, string prezime, string oib, ITekuciRacun? tekuciRacun, IZiroRacun? ziroRacun)
         {
             Ime = ime;
@@ -41,6 +44,11 @@
                 default:
                     return false;
             }
+        }
+        public float KreditnaSposobnost(float mjesecnaPrimanja)
+        {
+            float maxZaduzenost = mjesecnaPrimanja - 650.0f;
+            return maxZaduzenost;
         }
     }
 
