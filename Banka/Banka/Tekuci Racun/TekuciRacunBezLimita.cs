@@ -1,23 +1,23 @@
-﻿using System;
-namespace Banka
+﻿namespace Banka
 {
-    public class TekuciRacunBezLimita: ITekuciRacun
+    public class TekuciRacunBezLimita : ITekuciRacun
     {
         public string IBAN { get; private set; }
         public float StanjeRacuna { get; private set; }
         public float RaspoloziviIznos { get; private set; }
         public float RezerviraniIznos { get; private set; }
-
-        private string VlasnikOIB;
+        public float LimitUplata { get; private set; }
+        public float LimitIsplata { get; private set; }
 
         //Konstruktor za generiranje tekuceg racuna iz baze podataka
-        public TekuciRacunBezLimita(string IBAN, float stanjeRacuna, float rezerviraniIznos, string vlasnikOIB)
+        public TekuciRacunBezLimita(string IBAN, float stanjeRacuna, float rezerviraniIznos)
         {
             this.IBAN = IBAN;
             StanjeRacuna = stanjeRacuna;
             RezerviraniIznos = rezerviraniIznos;
             RaspoloziviIznos = StanjeRacuna - RezerviraniIznos;
-            VlasnikOIB = vlasnikOIB;
+            LimitUplata = float.MaxValue;
+            LimitIsplata = float.MaxValue;
         }
 
         public bool UplatiNovac(float iznosZaUplatu)

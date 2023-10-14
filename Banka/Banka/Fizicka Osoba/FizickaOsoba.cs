@@ -8,7 +8,7 @@
         public ITekuciRacun? TekuciRacun { get; private set; }
         public IZiroRacun? ZiroRacun { get; private set; }
 
-
+        public List<INenamjenskiKredit> listaNenamjenskihKredita = new();
 
 
         public FizickaOsoba(string ime, string prezime, string oib, ITekuciRacun? tekuciRacun, IZiroRacun? ziroRacun)
@@ -19,7 +19,18 @@
             TekuciRacun = tekuciRacun;
             ZiroRacun = ziroRacun;
         }
+        public FizickaOsoba(string ime, string prezime, string oib)
+        {
+            Ime = ime;
+            Prezime = prezime;
+            OIB = oib;
 
+        }
+        public void DodajKredit(INenamjenskiKredit kredit)
+        {
+            listaNenamjenskihKredita.Add(kredit);
+            return;
+        }
         public bool IsplataNovca(VrstaRacuna vrstaRacuna, float iznos)
         {
             switch (vrstaRacuna)

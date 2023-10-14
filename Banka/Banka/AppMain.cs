@@ -4,8 +4,8 @@
     {
         static void Main(string[] args)
         {
-
-
+            StoragePool.GetStoragePool().InicijalizirajStorage();
+            Console.WriteLine(StoragePool.GetStoragePool().FizickaOsobaStorage.GetFizickaOsoba("48048307921").Ime);
             Console.WriteLine("Unesite ime osobe: ");
             string? ime = Console.ReadLine();
             Console.WriteLine("Unesite prezime osobe: ");

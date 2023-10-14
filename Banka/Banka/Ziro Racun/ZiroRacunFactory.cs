@@ -16,8 +16,32 @@
             return ziroRacun;
 
         }
+        public List<IZiroRacun> KreirajZiroRacuneIzBaze(List<ZiroRacunJson> listaZiroRacuna)
+        {
+            List<IZiroRacun> ziroRacunLista = new();
+            foreach (ZiroRacunJson ziroRacunJson in listaZiroRacuna)
+            {
+                ZiroRacun ziroRacun = new(ziroRacunJson.StanjeRacuna, ziroRacunJson.RezerviraniDio, ziroRacunJson.IBAN);
+                ziroRacunLista.Add(ziroRacun);
+            }
+            return ziroRacunLista;
+        }
 
-
+        public List<ZiroRacunJson> KreirajZapisZiroRacuna(List<IZiroRacun> listaZiroRacuna)
+        {
+            List<ZiroRacunJson> listaZiroRacunaJson = new();
+            ZiroRacunJson ziroRacunJson = new();
+            foreach (IZiroRacun ziroRacun in listaZiroRacuna)
+            {
+                ziroRacunJson.StanjeRacuna = ziroRacun.StanjeRacuna;
+                ziroRacunJson.RezerviraniDio = ziroRacun.RezerviraniDio;
+                ziroRacunJson.RaspoloziviIznos = ziroRacun.RaspoloziviIznos;
+                ziroRacunJson.LimitUplate = ziroRacun.LimitUplate;
+                ziroRacunJson.LimitIsplate = ziroRacun.LimitUplate;
+                listaZiroRacunaJson.Add(ziroRacunJson);
+            }
+            return listaZiroRacunaJson;
+        }
 
     }
 }

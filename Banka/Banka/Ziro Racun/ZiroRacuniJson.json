@@ -1,0 +1,17 @@
+{"fizickeOsobe":
+  [{"Ime":"Petar",
+  "Prezime":"Peric",
+  "Oib" : 48048465921
+  },
+  {
+  "Ime":"Ivan",
+  "Prezime":"Ivic",
+  "Oib" : 45671307541
+  },
+  {
+    "Ime":"Marko",
+  "Prezime":"Markic",
+  "Oib" :098778653921
+  }]
+  
+}

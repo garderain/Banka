@@ -1,0 +1,26 @@
+{
+  "fizickeOsobe": [
+    {
+      "Ime": "Matej",
+      "Prezime": "Jazvic",
+      "OIB": 48048307921,
+      "TekuciRacunIBAN": "HR4810010053521487286",
+      "ZiroRacunIBAN": null
+    },
+    {
+      "Ime": "Luka",
+      "Prezime": "Radivoj",
+      "OIB": 48021307541,
+      "TekuciRacunIBAN": "HR4810010053536562286",
+      "ZiroRacunIBAN": null
+    },
+    {
+      "Ime": "Marko",
+      "Prezime": "Peric",
+      "OIB": 128078653921,
+      "TekuciRacunIBAN": "HR4810010053521462286",
+      "ZiroRacunIBAN": null
+    }
+  ]
+
+}

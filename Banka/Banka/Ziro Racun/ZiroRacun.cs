@@ -9,8 +9,8 @@
         public float RezerviraniDio { get; private set; }
         public string? IBAN { get; private set; }
 
-        private float LimitUplate { get; set; }
-        private float LimitIsplate { get; set; }
+        public float LimitUplate { get; set; }
+        public float LimitIsplate { get; set; }
 
         public ZiroRacun(float stanjeRacuna, float rezerviraniDio, string Iban)
         {
