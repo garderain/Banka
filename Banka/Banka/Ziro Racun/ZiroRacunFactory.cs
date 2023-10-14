@@ -2,19 +2,18 @@
 {
     public class ZiroRacunFactory : IZiroRacunFactory
     {
-        private Dictionary<string, string> OibIban = new();
-        public IZiroRacun KreirajZiroRacun(string OIB)
+
+        public IZiroRacun KreirajZiroRacun()
         {
-            UtilityClass.ProvjeriOIB(OIB);
             string IBAN = UtilityClass.GenerirajNoviIBAN();
-            if (OibIban.ContainsKey(OIB)) { throw new HasZiroAccount("Osoba vec ima Ziro racun!"); }
-            else
-            {
-                OibIban.Add(OIB, IBAN);
-            }
             ZiroRacun ziroRacun = new(0.0f, 0.0f, IBAN);
             return ziroRacun;
+        }
 
+        public IZiroRacun KreirajZiroRacunIzBaze(ZiroRacunJson ziroRacunjson)
+        {
+            ZiroRacun ziroRacun = new(ziroRacunjson.StanjeRacuna, ziroRacunjson.RezerviraniDio, ziroRacunjson.IBAN);
+            return ziroRacun;
         }
         public List<IZiroRacun> KreirajZiroRacuneIzBaze(List<ZiroRacunJson> listaZiroRacuna)
         {

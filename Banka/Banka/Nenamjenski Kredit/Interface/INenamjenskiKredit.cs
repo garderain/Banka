@@ -9,6 +9,7 @@
         float UkupanIznosZaOtplatu { get; }
         float MjesecniAnuitet { get; }
 
+        Guid IdKredit { get; }
 
 
         bool UplatiRatu(float iznosZaUplatu);

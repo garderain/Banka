@@ -1,6 +1,5 @@
 ﻿namespace Banka
 {
-
     public class TekuciRacuniJson
     {
         public List<TekuciRacunJson> TekuciRacuni { get; set; }

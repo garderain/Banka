@@ -8,7 +8,7 @@
         public ITekuciRacun? TekuciRacun { get; private set; }
         public IZiroRacun? ZiroRacun { get; private set; }
 
-        public List<INenamjenskiKredit> listaNenamjenskihKredita = new();
+        public static List<INenamjenskiKredit> listaNenamjenskihKredita { get; set; }
 
 
         public FizickaOsoba(string ime, string prezime, string oib, ITekuciRacun? tekuciRacun, IZiroRacun? ziroRacun)

@@ -1,17 +1,17 @@
 {"fizickeOsobe":
   [{"Ime":"Petar",
   "Prezime":"Peric",
-  "Oib" : 48048465921
+  "IBAN" : "HR48048465921125412"
   },
   {
   "Ime":"Ivan",
   "Prezime":"Ivic",
-  "Oib" : 45671307541
+  "IBAN" : "HR45671307541854785"
   },
   {
     "Ime":"Marko",
   "Prezime":"Markic",
-  "Oib" :098778653921
+  "IBAN" : "HR098778653921156984"
   }]
   
 }

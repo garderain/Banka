@@ -7,7 +7,7 @@
         public float StanjeRacuna { get; private set; }
         public float RaspoloziviIznos { get; private set; }
         public float RezerviraniDio { get; private set; }
-        public string? IBAN { get; private set; }
+        public string IBAN { get; private set; }
 
         public float LimitUplate { get; set; }
         public float LimitIsplate { get; set; }

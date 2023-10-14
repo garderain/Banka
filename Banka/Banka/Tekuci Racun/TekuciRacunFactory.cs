@@ -2,12 +2,6 @@
 {
     public class TekuciRacunFactory : ITekuciRacunFactory
     {
-        public ITekuciRacun KreirajPostojeciRacun(string IBAN, float stanjeRacuna, float rezerviraniIznos, float limitUplata, float limitIsplata)
-        {
-            TekuciRacun tekuciRacun = new(IBAN, stanjeRacuna, rezerviraniIznos, limitUplata, limitIsplata);
-
-            return tekuciRacun;
-        }
         public ITekuciRacun KreirajNoviRacun()
         {
             string IBAN = UtilityClass.GenerirajNoviIBAN();
@@ -16,7 +10,6 @@
 
             return tekuciRacun;
         }
-
 
         public ITekuciRacun KreirajNoviRacun(float limitUplata, float limitIsplata)
         {
@@ -36,12 +29,6 @@
 
         public ITekuciRacun KreirajTekuciracunIzBaze(TekuciRacunJson tekuciRacunJson)
         {
-            ITekuciRacun? tekuci_Racun = null;
-            tekuci_Racun = StoragePool.GetStoragePool().TekuciRacunStorage.GetTekuciRacun(tekuciRacunJson.IBAN);
-            if (tekuci_Racun == null)
-            {
-                throw new NoTekuciRacunWithIBAN(tekuciRacunJson.IBAN);
-            }
             TekuciRacun tekuciRacun = new(tekuciRacunJson.IBAN, tekuciRacunJson.StanjeRacuna, tekuciRacunJson.RezerviraniIznos);
             return tekuciRacun;
         }
@@ -49,10 +36,10 @@
         public List<ITekuciRacun> KreirajTekuceRacune(List<TekuciRacunJson> tekuciRacuniJson)
         {
             List<ITekuciRacun> listaTekucihRacuna = new();
-            foreach (TekuciRacunJson tekuciRacun in tekuciRacuniJson)
+            foreach (TekuciRacunJson tekuciRacunJson in tekuciRacuniJson)
             {
-                ITekuciRacun tekuci_Racun = StoragePool.GetStoragePool().TekuciRacunStorage.GetTekuciRacun(tekuciRacun.IBAN);
-                listaTekucihRacuna.Add(tekuci_Racun);
+                TekuciRacun tekuciRacun = new(tekuciRacunJson.IBAN, tekuciRacunJson.StanjeRacuna, tekuciRacunJson.RezerviraniIznos);
+                listaTekucihRacuna.Add(tekuciRacun);
             }
             return listaTekucihRacuna;
         }

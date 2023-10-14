@@ -17,6 +17,7 @@ namespace Banka
             {
                 throw new InvalidDataException("Greska u citanju baze tekucih racuna!");
             }
+
             List<ITekuciRacun> listaTekucihRacuna = FactoryPool.DobaviInstancu().TekuciRacunFactory.KreirajTekuceRacune(tekuciRacuniJson.TekuciRacuni);
             foreach (ITekuciRacun tekuciRacun in listaTekucihRacuna)
             {
@@ -50,6 +51,11 @@ namespace Banka
                 return tekuciRacuni[IBAN];
             }
             return null;
+        }
+
+        public bool IbanPostoji(string IBAN)
+        {
+            return tekuciRacuni.Keys.Contains(IBAN);
         }
 
     }

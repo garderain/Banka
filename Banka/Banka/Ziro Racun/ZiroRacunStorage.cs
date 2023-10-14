@@ -2,7 +2,7 @@
 
 namespace Banka
 {
-    public class ZiroRacunStorage
+    public class ZiroRacunStorage : IZiroRacunStorage
     {
         Dictionary<string, IZiroRacun> ziroRacuni = new();
         private static string pathToJsonFile = "C:\\Users\\Magdalena\\OneDrive\\Dokumenti\\GitHub\\Banka\\Banka\\Banka\\Ziro Racun\\ZiroRacuniJson.json";
@@ -44,7 +44,11 @@ namespace Banka
         public IZiroRacun? GetZiroRacun(string IBAN)
         {
             if (ziroRacuni.ContainsKey(IBAN)) { return ziroRacuni[IBAN]; }
-            else { return ziroRacuni[IBAN] = null; }
+            else { return null; }
+        }
+        public bool IbanPostoji(string IBAN)
+        {
+            return ziroRacuni.Keys.Contains(IBAN);
         }
     }
 }

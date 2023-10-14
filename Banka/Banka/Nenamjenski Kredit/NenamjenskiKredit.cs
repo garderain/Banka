@@ -8,11 +8,12 @@
         public float UkupnaKamata { get; private set; }
         public float UkupanIznosZaOtplatu { get; private set; }
         public float MjesecniAnuitet { get; private set; }
-
+        public Guid IdKredit { get; private set; }
 
 
         public NenamjenskiKredit(float glavnica, float kamatnaStopa, float rokOtplate)
         {
+            IdKredit = Guid.NewGuid();
             Glavnica = glavnica;
             KamatnaStopa = kamatnaStopa;
             RokOtplate = rokOtplate;
@@ -20,6 +21,18 @@
             IznosZaOtplatu();
             IznosMjesecnogAnuiteta();
         }
+
+        public NenamjenskiKredit(float glavnica, float kamatnaStopa, float rokOtplate, Guid idKredit)
+        {
+            IdKredit = idKredit;
+            Glavnica = glavnica;
+            KamatnaStopa = kamatnaStopa;
+            RokOtplate = rokOtplate;
+            IzracunUkupneKamate();
+            IznosZaOtplatu();
+            IznosMjesecnogAnuiteta();
+        }
+
         private void IznosMjesecnogAnuiteta()
         {
             MjesecniAnuitet = UkupanIznosZaOtplatu / (RokOtplate * 12);

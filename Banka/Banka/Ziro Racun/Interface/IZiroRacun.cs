@@ -4,7 +4,7 @@
     {
 
         float StanjeRacuna { get; }
-        string? IBAN { get; }
+        string IBAN { get; }
         float RaspoloziviIznos { get; }
         float RezerviraniDio { get; }
         float LimitUplate { get; }

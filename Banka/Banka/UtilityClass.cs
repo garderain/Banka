@@ -5,7 +5,6 @@ namespace Banka
     public class UtilityClass
     {
         public static readonly float KreditniKoeficijent = 0.3f;
-        public static List<string> iskoristeniIBANi = new List<string>();
         private static readonly string KOD_DRZAVA = "HR";
         private static readonly string KOD_BANKA = "1001005";
 
@@ -36,8 +35,7 @@ namespace Banka
                 IBAN = KOD_DRZAVA + kontrolniBrojevi.ToString() + KOD_BANKA + ostatak.ToString();
 
 
-            } while (iskoristeniIBANi.Contains(IBAN));
-            iskoristeniIBANi.Add(IBAN);
+            } while (StoragePool.GetStoragePool().TekuciRacunStorage.IbanPostoji(IBAN) || StoragePool.GetStoragePool().ZiroRacunStorage.IbanPostoji(IBAN));
 
             return IBAN;
         }

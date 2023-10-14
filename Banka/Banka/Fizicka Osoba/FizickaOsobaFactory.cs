@@ -15,7 +15,7 @@
             foreach (VrstaRacuna racun in racuniZaIzradu)
             {
                 if (racun == VrstaRacuna.TEKUCI_RACUN) { tekuciRacun = FactoryPool.DobaviInstancu().TekuciRacunFactory.KreirajNoviRacun(); }
-                else { ziroRacun = FactoryPool.DobaviInstancu().ZiroRacunFactory.KreirajZiroRacun(oib); }
+                else { ziroRacun = FactoryPool.DobaviInstancu().ZiroRacunFactory.KreirajZiroRacun(); }
             }
             FizickaOsoba fizickaOsoba = new(ime, prezime, oib, tekuciRacun, ziroRacun);
             return fizickaOsoba;
@@ -85,5 +85,8 @@
 
             return fizickaOsobaJsonList;
         }
+
+        public void DodajKreditUListu(List<INenamjenskiKredit> listaKredita, INenamjenskiKredit nenamjenskiKredit)
+        { if (!listaKredita.Contains(nenamjenskiKredit)) { listaKredita.Add(nenamjenskiKredit); } }
     }
 }
