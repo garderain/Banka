@@ -12,9 +12,9 @@ namespace Banka
         public INenamjenskiKreditStorage NenamjenskiKreditStorage { get; }
 
 
-        public StoragePool()
+        public StoragePool(BankaDbContext bankaDbContext)
         {
-            TekuciRacunStorage = new TekuciRacunStorage();
+            TekuciRacunStorage = new TekuciRacunStorage(bankaDbContext);
             FizickaOsobaStorage = new FizickaOsobaStorage();
             ZiroRacunStorage = new ZiroRacunStorage();
             NenamjenskiKreditStorage = new NenamjenskiKreditStorage();
@@ -34,9 +34,9 @@ namespace Banka
             ZiroRacunStorage.SpremiStorage();
             NenamjenskiKreditStorage.SpremiStorage();
         }
-        public static StoragePool GetStoragePool()
+        public static StoragePool GetStoragePool(BankaDbContext? bankaDbContext = null)
         {
-            storagePool ??= new StoragePool();
+            storagePool ??= new StoragePool(bankaDbContext);
             return storagePool;
         }
     }

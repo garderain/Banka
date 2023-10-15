@@ -1,13 +1,25 @@
-﻿namespace Banka
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+
+namespace Banka
 {
-    public class AppMain
+    public class AppMain : IDesignTimeDbContextFactory<BankaDbContext>
     {
+        public BankaDbContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<BankaDbContext>();
+            optionsBuilder.UseSqlite("Data Source=Banka.db");
+
+            return new BankaDbContext(optionsBuilder.Options);
+        }
+
         //public static void KreirajNovuFizickuOsobu()
         static void Main(string[] args)
         {
-            /*StoragePool.GetStoragePool().InicijalizirajStorage();
+            BankaDbContext bankaDbContext = new BankaDbContext(new DbContextOptionsBuilder<BankaDbContext>().UseSqlite("Data Source=Banka.db").Options);
+            StoragePool.GetStoragePool(bankaDbContext).InicijalizirajStorage();
 
-            while (true)
+            /*while (true)
             {
                 Console.WriteLine("Zelite li:\n 1.Kreirati novu fizicku osobu \n2.Dodati tekuci racun\n3.Dodati ziro racun\n4.Podici kredit\n5.Izlaz");
                 int izbor = Convert.ToInt32(Console.ReadLine());

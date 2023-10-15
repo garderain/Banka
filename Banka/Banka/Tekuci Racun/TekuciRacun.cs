@@ -13,6 +13,8 @@
         public float LimitUplata { get; private set; }
         public float LimitIsplata { get; private set; }
 
+        public TekuciRacun() { }
+
         //Konstruktor za generiranje tekuceg racuna iz baze podataka
         public TekuciRacun(string iban, float stanjeRacuna, float rezerviraniIznos, float limitUplata, float limitIsplata)
         {

@@ -13,7 +13,6 @@
         public INenamjenskiKredit KreirajKreditIzBaze(NenamjenskiKreditJson nenamjenskiKreditJson)
         {
             NenamjenskiKredit nenamjenskiKredit = new(nenamjenskiKreditJson.Glavnica, nenamjenskiKreditJson.KamatnaStopa, nenamjenskiKreditJson.RokOtplate, new Guid(nenamjenskiKreditJson.IdKredit));
-            FactoryPool.DobaviInstancu().FizickaOsobaFactory.DodajKreditUListu(FizickaOsoba.listaNenamjenskihKredita, nenamjenskiKredit);
             return nenamjenskiKredit;
 
         }
@@ -25,7 +24,6 @@
             {
                 NenamjenskiKredit nenamjenskiKredit = new(nenamjenskiKreditJson.Glavnica, nenamjenskiKreditJson.KamatnaStopa, nenamjenskiKreditJson.RokOtplate, new Guid(nenamjenskiKreditJson.IdKredit));
                 nenamjenskiKreditiList.Add(nenamjenskiKredit);
-                FactoryPool.DobaviInstancu().FizickaOsobaFactory.DodajKreditUListu(FizickaOsoba.listaNenamjenskihKredita, nenamjenskiKredit);
             }
             return nenamjenskiKreditiList;
         }
