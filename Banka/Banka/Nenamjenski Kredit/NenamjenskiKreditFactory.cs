@@ -7,11 +7,7 @@
             NenamjenskiKredit nenamjenskiKredit = new(glavnica, kamatnaStopa, rokOtplate);
             if ((nenamjenskiKredit.MjesecniAnuitet + mjesecnaZaduzenja) > mjesecnaPrimanja * UtilityClass.KreditniKoeficijent)
             { throw new InsufficientIncome("Nedovoljna mjesecna primanja!"); }
-            else
-            {
-                FizickaOsoba.listaNenamjenskihKredita.Add(nenamjenskiKredit);
-                return nenamjenskiKredit;
-            }
+            return nenamjenskiKredit;
         }
 
         public INenamjenskiKredit KreirajKreditIzBaze(NenamjenskiKreditJson nenamjenskiKreditJson)

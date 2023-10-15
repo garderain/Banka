@@ -7,28 +7,26 @@
         public string OIB { get; private set; }
         public ITekuciRacun? TekuciRacun { get; private set; }
         public IZiroRacun? ZiroRacun { get; private set; }
+        public List<INenamjenskiKredit> ListaNenamjenskihKredita { get; set; }
 
-        public static List<INenamjenskiKredit> listaNenamjenskihKredita { get; set; }
 
-
-        public FizickaOsoba(string ime, string prezime, string oib, ITekuciRacun? tekuciRacun, IZiroRacun? ziroRacun)
+        public FizickaOsoba(string ime, string prezime, string oib, ITekuciRacun? tekuciRacun, IZiroRacun? ziroRacun, List<INenamjenskiKredit> listaNenamjenskihKredita)
         {
             Ime = ime;
             Prezime = prezime;
             OIB = oib;
             TekuciRacun = tekuciRacun;
             ZiroRacun = ziroRacun;
+            ListaNenamjenskihKredita = listaNenamjenskihKredita;
         }
-        public FizickaOsoba(string ime, string prezime, string oib)
-        {
-            Ime = ime;
-            Prezime = prezime;
-            OIB = oib;
 
-        }
         public void DodajKredit(INenamjenskiKredit kredit)
         {
-            listaNenamjenskihKredita.Add(kredit);
+            foreach (INenamjenskiKredit nenamjenskiKredit in ListaNenamjenskihKredita)
+            {
+                if (nenamjenskiKredit.IdKredit == kredit.IdKredit) { return; }
+            }
+            ListaNenamjenskihKredita.Add(kredit);
             return;
         }
         public bool IsplataNovca(VrstaRacuna vrstaRacuna, float iznos)

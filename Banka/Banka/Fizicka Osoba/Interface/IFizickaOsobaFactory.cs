@@ -7,6 +7,6 @@
         List<IFizickaOsoba> KreirajFizickeOsobe(List<FizickaOsobaJson> fizickaOsobaJsonList);
         FizickaOsobaJson KreirajZapisFizickeOsobe(IFizickaOsoba iFizickaOsoba);
         List<FizickaOsobaJson> KreirajZapisFizickihOsoba(List<IFizickaOsoba> iFizickaOsobaList);
-        void DodajKreditUListu(List<INenamjenskiKredit> listaKredita, INenamjenskiKredit nenamjenskiKredit);
+
     }
 }

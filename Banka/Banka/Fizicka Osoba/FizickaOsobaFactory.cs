@@ -17,12 +17,21 @@
                 if (racun == VrstaRacuna.TEKUCI_RACUN) { tekuciRacun = FactoryPool.DobaviInstancu().TekuciRacunFactory.KreirajNoviRacun(); }
                 else { ziroRacun = FactoryPool.DobaviInstancu().ZiroRacunFactory.KreirajZiroRacun(); }
             }
-            FizickaOsoba fizickaOsoba = new(ime, prezime, oib, tekuciRacun, ziroRacun);
+            FizickaOsoba fizickaOsoba = new(ime, prezime, oib, tekuciRacun, ziroRacun, new List<INenamjenskiKredit>());
             return fizickaOsoba;
         }
 
         public IFizickaOsoba KreirajFizickuOsobu(FizickaOsobaJson fizickaOsobaJson)
         {
+            IZiroRacun? ziroRacun = null;
+            if (fizickaOsobaJson.ZiroRacunIBAN != null)
+            {
+                ziroRacun = StoragePool.GetStoragePool().ZiroRacunStorage.GetZiroRacun(fizickaOsobaJson.ZiroRacunIBAN);
+                if (ziroRacun == null)
+                {
+                    throw new MissingZiroRacunException("Ziro racun ne postoji!");
+                }
+            }
             ITekuciRacun? tekuciRacun = null;
             if (fizickaOsobaJson.TekuciRacunIBAN != null)
             {
@@ -32,7 +41,19 @@
                     throw new NoTekuciRacunWithIBAN(fizickaOsobaJson.TekuciRacunIBAN);
                 }
             }
-            FizickaOsoba fizickaOsoba = new FizickaOsoba(fizickaOsobaJson.Ime, fizickaOsobaJson.Prezime, fizickaOsobaJson.OIB, tekuciRacun, null);
+
+            List<INenamjenskiKredit> listaNenamjenskihKredita = new();
+            foreach (string idKredita in fizickaOsobaJson.ListaNenamjenskihKreditaIds)
+            {
+                INenamjenskiKredit? nenamjenskiKredit = StoragePool.GetStoragePool().NenamjenskiKreditStorage.GetNenamjenskiKredit(new Guid(idKredita));
+                if (nenamjenskiKredit == null)
+                {
+                    throw new MissingNenamjenskiKreditException("Kredit ne postoji u bazi!");
+                }
+                listaNenamjenskihKredita.Add(nenamjenskiKredit);
+            }
+
+            FizickaOsoba fizickaOsoba = new FizickaOsoba(fizickaOsobaJson.Ime, fizickaOsobaJson.Prezime, fizickaOsobaJson.OIB, tekuciRacun, null, listaNenamjenskihKredita);
             return fizickaOsoba;
         }
 
@@ -41,6 +62,15 @@
             List<IFizickaOsoba> fizickeOsobe = new();
             foreach (FizickaOsobaJson fizickaOsobaJson in fizickaOsobaJsonList)
             {
+                IZiroRacun? ziroRacun = null;
+                if (fizickaOsobaJson.ZiroRacunIBAN != null)
+                {
+                    ziroRacun = StoragePool.GetStoragePool().ZiroRacunStorage.GetZiroRacun(fizickaOsobaJson.ZiroRacunIBAN);
+                    if (ziroRacun == null)
+                    {
+                        throw new MissingZiroRacunException("Ziro racun ne postoji!");
+                    }
+                }
                 ITekuciRacun? tekuciRacun = null;
                 if (fizickaOsobaJson.TekuciRacunIBAN != null)
                 {
@@ -50,7 +80,18 @@
                         throw new NoTekuciRacunWithIBAN(fizickaOsobaJson.TekuciRacunIBAN);
                     }
                 }
-                FizickaOsoba fizickaOsoba = new FizickaOsoba(fizickaOsobaJson.Ime, fizickaOsobaJson.Prezime, fizickaOsobaJson.OIB, tekuciRacun, null);
+
+                List<INenamjenskiKredit> listaNenamjenskihKredita = new();
+                foreach (string idKredita in fizickaOsobaJson.ListaNenamjenskihKreditaIds)
+                {
+                    INenamjenskiKredit? nenamjenskiKredit = StoragePool.GetStoragePool().NenamjenskiKreditStorage.GetNenamjenskiKredit(new Guid(idKredita));
+                    if (nenamjenskiKredit == null)
+                    {
+                        throw new MissingNenamjenskiKreditException("Kredit ne postoji u bazi!");
+                    }
+                    listaNenamjenskihKredita.Add(nenamjenskiKredit);
+                }
+                FizickaOsoba fizickaOsoba = new FizickaOsoba(fizickaOsobaJson.Ime, fizickaOsobaJson.Prezime, fizickaOsobaJson.OIB, tekuciRacun, null, listaNenamjenskihKredita);
                 fizickeOsobe.Add(fizickaOsoba);
             }
             return fizickeOsobe;
@@ -65,6 +106,11 @@
             fizickaOsobaJSon.OIB = fizickaOsoba.OIB;
             fizickaOsobaJSon.TekuciRacunIBAN = fizickaOsoba.TekuciRacun == null ? null : fizickaOsoba.TekuciRacun.IBAN;
             fizickaOsobaJSon.ZiroRacunIBAN = fizickaOsoba.ZiroRacun == null ? null : fizickaOsoba.ZiroRacun.IBAN;
+            foreach (INenamjenskiKredit nenamjenskiKredit in fizickaOsoba.ListaNenamjenskihKredita)
+            {
+                fizickaOsobaJSon.ListaNenamjenskihKreditaIds.Add(nenamjenskiKredit.IdKredit.ToString());
+            }
+
             return fizickaOsobaJSon;
         }
 
@@ -80,13 +126,14 @@
                 fizickaOsobaJSon.OIB = fizickaOsoba.OIB;
                 fizickaOsobaJSon.TekuciRacunIBAN = fizickaOsoba.TekuciRacun == null ? null : fizickaOsoba.TekuciRacun.IBAN;
                 fizickaOsobaJSon.ZiroRacunIBAN = fizickaOsoba.ZiroRacun == null ? null : fizickaOsoba.ZiroRacun.IBAN;
+                foreach (INenamjenskiKredit nenamjenskiKredit in fizickaOsoba.ListaNenamjenskihKredita)
+                {
+                    fizickaOsobaJSon.ListaNenamjenskihKreditaIds.Add(nenamjenskiKredit.IdKredit.ToString());
+                }
                 fizickaOsobaJsonList.Add(fizickaOsobaJSon);
             }
 
             return fizickaOsobaJsonList;
         }
-
-        public void DodajKreditUListu(List<INenamjenskiKredit> listaKredita, INenamjenskiKredit nenamjenskiKredit)
-        { if (!listaKredita.Contains(nenamjenskiKredit)) { listaKredita.Add(nenamjenskiKredit); } }
     }
 }

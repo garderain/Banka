@@ -7,7 +7,6 @@
 
         }
     }
-
     public class MalformedOibException : Exception
     {
         public MalformedOibException(string message) : base(message)
@@ -33,5 +32,12 @@
     {
         public InsufficientIncome(string message) : base(message) { }
     }
+
+    public class MissingNenamjenskiKreditException : Exception
+    {
+        public MissingNenamjenskiKreditException(string message) : base(message) { }
+    }
+
+
 }
 
